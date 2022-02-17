@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[papersize={8.5in,11in},margin=0.8in]{geometry}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+
+
+\title{CS 508 Assignment 2}
+\author{John Caruthers}
+\date\today
+
+\begin{document}
+\maketitle
+
+For questions 1-6, calculate the numeric conversions as specified.  The conversions are to be based on the representation of signed integers.  Hexadecimal values must start with the 0x prefix.  All binary values should be stated with the appropriate number of bits (8, 16, 32) inclusive of the sign bit.  Show all work where applicable. 
+
+\begin{itemize}
+    \item[1.] Convert the decimal number [289] into binary and hexadecimal.
+    \begin{align}
+        289/2=144 \hspace{0.2cm}&\text{r}1 \nonumber\\
+        144/2=72 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        72/2=36 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        36/2=18 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        18/2=9 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        9/2=4 \hspace{0.2cm}&\text{r}1 \nonumber\\
+        4/2=2 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        2/2=1 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        1/2=0 \hspace{0.2cm}&\text{r}1 \nonumber
+    \end{align}
+    \textbf{Binary: 0000 0001 0010 0001}
+    \begin{align}
+        0000: &0\nonumber\\
+        0001: &1\nonumber\\
+        0010: &2\nonumber\\
+        0001: &1\nonumber
+    \end{align}
+    \textbf{Hexadecimal: 0x0121}
+    \item[2.] Convert the decimal number [-712] into binary and hexadecimal.
+    \begin{align}
+        712/2=356 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        356/2=178 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        178/2=89 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        89/2=44 \hspace{0.2cm}&\text{r}1 \nonumber\\
+        44/2=22 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        22/2=11 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        11/2=5 \hspace{0.2cm}&\text{r}1 \nonumber\\
+        5/2=2 \hspace{0.2cm}&\text{r}1 \nonumber\\
+        2/2=1 \hspace{0.2cm}&\text{r}0 \nonumber\\
+        1/2=0 \hspace{0.2cm}&\text{r}1 \nonumber
+    \end{align}
+    \begin{center}
+        +712: 0000 0010 1100 1000\\
+        Invert: 1111 1101 0011 0111\\
+        Add 1: 1111 1101 0011 1000
+    \end{center}
+    \textbf{Binary: 1111 1101 0011 1000}
+    \begin{align}
+        1111: &\text{f}\nonumber\\
+        1101: &\text{d}\nonumber\\
+        0011: &3\nonumber\\
+        1000: &8\nonumber
+    \end{align}
+    \textbf{Hexadecimal: 0xfd38}
+    \item[3.] Convert the binary number [00101101] into hexadecimal and decimal.
+    \begin{align}
+        0010: &2\nonumber\\
+        1101: &\text{d}\nonumber
+    \end{align}
+    \textbf{Hexadecimal: 0x2d}
+    \begin{align}
+        &0\text{x}2\text{d}\nonumber\\
+        =&2*16^1+\text{d}(13)*16^0\nonumber\\
+        =&32+13\nonumber\\
+        =&45\nonumber
+    \end{align}
+    \textbf{Decimal: 45}
+    \item[4.] Convert the binary number [10111011] into hexadecimal and decimal.
+    \begin{align}
+        &10111011\nonumber\\
+        =&-2^7+2^5+2^4+2^3+2^1+2^0\nonumber\\
+        =&-128+32+16+8+2+1\nonumber\\
+        =&-69\nonumber
+    \end{align}
+    \textbf{Decimal: -69}
+    \begin{align}
+        1011: &\text{b}\nonumber\\
+        1011: &\text{b}\nonumber
+    \end{align}
+    \textbf{Hexadecimal: 0xbb}
+    \item[5.] Convert the hexadecimal number [0x323f] into binary and decimal.
+    \begin{align}
+        3: &0011\nonumber\\
+        2: &0010\nonumber\\
+        3: &0011\nonumber\\
+        \text{f}: &1111\nonumber
+    \end{align}
+    \textbf{Binary: 0011 0010 0011 1111}
+    \begin{align}
+        &0\text{x}323\text{f}\nonumber\\
+        =&3*16^3+2*16^2+3*16^1+\text{f}(15)*16^0\nonumber\\
+        =&3*4096+2*256+3*16+15\nonumber\\
+        =&12288+512+48+15\nonumber\\
+        =&12863\nonumber
+    \end{align}
+    \textbf{Decimal: 12863}
+    \item[6.] Convert the hexadecimal number [0x8be8] into binary and decimal.
+    \begin{align}
+        8: &1000\nonumber\\
+        \text{b}: &1011\nonumber\\
+        \text{e}: &1110\nonumber\\
+        8: &1000\nonumber
+    \end{align}
+    \textbf{Binary: 1000 1011 1110 1000}
+    \begin{align}
+        &0\text{x}8\text{be}8\nonumber\\
+        =&-16^4+8*16^3+\text{b}(11)*16^2+\text{e}(14)*16^1+8*16^0\nonumber\\
+        =&-65536+32768+2816+224+8\nonumber\\
+        =&-29720\nonumber
+    \end{align}
+    \textbf{Decimal: -29720}
+    \item[7.] Interpret the binary value 01000011001100110101000001001111 as a: 
+    \begin{itemize}
+        \item[a.] String of characters (left to right).\\
+        \hspace*{0.5cm} Using ASCII chart.
+        \begin{align}
+            01000011: &\text{C}\nonumber\\
+            00110011: &3\nonumber\\
+            01010000: &\text{P}\nonumber\\
+            01001111: &\text{O}\nonumber
+        \end{align}
+        \textbf{String of characters: C3PO}
+        \item[b.] A signed integer.\\
+        \hspace*{0.5cm} Convert to hexadecimal first.
+        \begin{align}
+            0100: &4\nonumber\\
+            0011: &3\nonumber\\
+            0011: &3\nonumber\\
+            0011: &3\nonumber\\
+            0101: &5\nonumber\\
+            0000: &0\nonumber\\
+            0100: &4\nonumber\\
+            1111: &\text{f}\nonumber
+        \end{align}
+        Hexadecimal: 0x4333504f-use to get decimal
+        \begin{align}
+            0\text{x}4333504\text{f}\nonumber\\
+            =&4*16^7+3*16^6+3*16^5+3*16^4+5*16^3+0*16^2+4*16^1+15*16^0\nonumber\\
+            =&4*268435456+3*16777216+3*1048576+3*65536+5*4096+0+4*16+15\nonumber\\
+            =&1127436367\nonumber
+        \end{align}
+        \textbf{A signed integer: 1127436367}
+    \end{itemize}
+\end{itemize}
+\end{document}
