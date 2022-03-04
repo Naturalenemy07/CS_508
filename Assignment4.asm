@@ -23,14 +23,14 @@
 	.data
 y_num:	.half	78	# offset: 0, Hex Value: 0x004e
 w_num:	.half	-540	# offset: 2, Hex Value: 0xfde4
-x_num:	.byte	3	# offset: 4, Hex Value: 0x03
+x_num:	.byte	4	# offset: 4, Hex Value: 0x04
 z_num:	.byte	-7	# offset: 5, Hex Value: 0xf9
 c_num:	.half	121	# offset: 6, Hex Value: 0x0079
 d_num:	.byte	-10	# offset: 8, Hex Value: 0xf6
 f_num:	.half	1207	# offset: 10, Hex Value: 0x04b7
-a_num:	.byte	-111	# offset: 12, Hex Value: 0x91
+a_num:	.byte	-11	# offset: 12, Hex Value: 0xf5
 b_num:	.half	720	# offset: 14, Hex Value: 0x02d0
-e_num:	.byte	-128	# offset: 16, Hex Value: 0x80
+e_num:	.byte	-2	# offset: 16, Hex Value: 0xfe
 h_result:	.word	0	# offset: 20
 j_result:	.word	0	# offset: 24
 k_result:	.word	0	# offset: 28
@@ -40,21 +40,21 @@ k_result:	.word	0	# offset: 28
 	.text
 main:	lui	s0,0x10010	# Base Memory Address
 # load appropriate data values from memory
-	lh	s4,0(s0) 	# store y_num in t0
-	lh	s5,2(s0)	# store w_num in t1
-	lb	s6,4(s0)	# store x_num in t2
-	lb	s7,5(s0)	# store z_num in t3
-	lh	s8,6(s0)	# store c_num in t4
-	lb	s9,8(s0)	# store d_num in t5
-	lh	s10,10(s0)	# store f_num in t6
-	lb	s11,12(s0)	# store a_num in s3
+	lh	s4,0(s0) 	# store y_num in s4
+	lh	s5,2(s0)	# store w_num in s5
+	lb	s6,4(s0)	# store x_num in s6
+	lb	s7,5(s0)	# store z_num in s7
+	lh	s8,6(s0)	# store c_num in s8
+	lb	s9,8(s0)	# store d_num in s9
+	lh	s10,10(s0)	# store f_num in s10
+	lb	s11,12(s0)	# store a_num in s11
 	lh	t0,14(s0)	# store b_num in t0
 	lb	t1,16(s0)	# store e_num in t1
 	
 # perform calculations for the three equations
 	# Equation 1
-	add	t2,s1,s2	# t2 = y_num + w_num
-	srli	t3,s3,2	# t3 = x_num / 4
+	add	t2,s4,s5	# t2 = y_num + w_num
+	srli	t3,s6,2	# t3 = x_num / 4
 	sub	t4,t2,t3	# t4 = (y_num + w_num) - (x_num / 4)
 	add	t5,t4,s7	# t5 = ((y_num + w_num) - (x_num / 4)) + z_num
 	xori	s1,t5,-1	# h_result = (((y_num + w_num) - (x_num / 4)) + z_num) XOR (-1)
