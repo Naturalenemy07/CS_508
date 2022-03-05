@@ -1,11 +1,15 @@
 # Name: John Caruthers
 # Course: CS 508: Computer Organization and Design
 # Assignment: 4
-# Date: 03 Mar 22
+# Date: 05 Mar 22
 
 # Program Description: Arithmetic & Logic Operations, Register Management, Loading & Storing to Memory
 
 # Register Usage: 
+# s0: base memory address
+# s1: h_result
+# s2: j_result
+# s3: k_result
 # s4: y_num
 # s5: w_num
 # s6: x_num
@@ -16,9 +20,11 @@
 # s11: a_num
 # t0: b_num
 # t1: e_num
-# s1: h_result
-# s2: j_result
-# s3: k_result
+# t2: used in storing temp values during calculations
+# t3: used in storing temp values during calculations
+# t4: used in storing temp values during calculations
+# t5: used in storing temp values during calculations
+# t6: used in storing temp values during calculations
 
 	.data
 y_num:	.half	78	# offset: 0, Hex Value: 0x004e
