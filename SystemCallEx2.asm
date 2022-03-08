@@ -1,4 +1,5 @@
 # System call example two, gets user input and returns that value, also prints an ascii character
+# this code uses pseudo code
 
 		.data
 str1:	.asciz	"Hello, World!\n"
