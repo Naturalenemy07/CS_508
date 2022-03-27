@@ -30,12 +30,6 @@ main:	lui	s0,0x10010		# Base Memory Address
 	
 	or	s3,zero,zero 	# initialize index to zero
 	addi	s6,zero,10		# store number of values in array (10) into s6
-		
-#iterator:	lw	t0,0(s5)		# store from memory into register s0
-#	addi	s3,s3,1		# add 1 to index
-#	slli	s4,s3,2		# multiply index by 4 to get offset
-#	add	s5,s0,s4		# add offset to address and store as new address
-#	blt	s3,9,iterator	# go back to beginning of loop if index is less than 9
 	
 iterator:	slli	s4,s3,2		# multiply index by 4 to get offset
 	add	s5,s0,s4		# add offset to address and store as new address
