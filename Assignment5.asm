@@ -12,7 +12,7 @@
 # s3: index
 # s4: offset
 # s5: sum of offset and address
-# s6: store number of values in array
+# s6: store number of values in array, this is hard coded
 # t0: temp display of values from array for me to test loop
 
 	.data
@@ -21,7 +21,7 @@ large:	.word	0
 small:	.word	0
 
 # testing strings
-text:	.asciz	"loop works!\n"
+#text:	.asciz	"loop works!\n"
 	
 	.text
 main:	lui	s0,0x10010		# Base Memory Address
@@ -33,10 +33,12 @@ main:	lui	s0,0x10010		# Base Memory Address
 	
 iterator:	slli	s4,s3,2		# multiply index by 4 to get offset
 	add	s5,s0,s4		# add offset to address and store as new address
-	lw	t0,0(s5)		# store from memory into t0 for me to make sure looping is correct
-	addi	s3,s3,1		# add 1 to index
+	lw	t0,0(s5)		# store from memory into t0 for further comparison	
+	# compare
+	bgt	t0,s1,greater	# go to greater branch if array[index] is greater that the number stored in large number register
+	
+indexadder:	addi	s3,s3,1		# add 1 to index
 	blt	s3,s6,iterator	# go back to beginning of loop if index is less than 10
 	
-exit:	ori	a7,zero,4
-	la	a0,text
-	ecall
+greater:	add	s1,t0,zero		# store array[index] into large number register
+	beq	zero,zero,indexadder	# return to iterator for completion of loop
