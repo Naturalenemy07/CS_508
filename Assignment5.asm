@@ -35,10 +35,19 @@ iterator:	slli	s4,s3,2		# multiply index by 4 to get offset
 	add	s5,s0,s4		# add offset to address and store as new address
 	lw	t0,0(s5)		# store from memory into t0 for further comparison	
 	# compare
-	bgt	t0,s1,greater	# go to greater branch if array[index] is greater that the number stored in large number register
+	bgt	t0,s1,greater	# go to greater branch if array[index] is greater than number stored in large number register
+	blt	t0,s2,lesser	# go to lesser branch if array[index] is less than number stored in small number register
 	
 indexadder:	addi	s3,s3,1		# add 1 to index
 	blt	s3,s6,iterator	# go back to beginning of loop if index is less than 10
+	beq	zero,zero,exit	# exit if reaching this instruction
 	
 greater:	add	s1,t0,zero		# store array[index] into large number register
 	beq	zero,zero,indexadder	# return to iterator for completion of loop
+	
+lesser:	add	s2,t0,zero		# store array[index[ into small number register
+	beq	zero,zero,indexadder	# return to iterator for completion of loop
+	
+exit:	ori	a7, zero, 10	# program exit system call
+	ecall			# exit program
+	
