@@ -16,9 +16,9 @@
 # t0: temp display of values from array for me to test loop
 
 	.data
-arr:	.word	-160 -1830 922 -596 1432 -142 537 -94 2018 29
-large:	.word	0
-small:	.word	0
+arr:	.word	-160 -1830 922 -596 1432 -142 537 -94 2018 29	# offset: 0
+large:	.word	0				# offset: 40
+small:	.word	0				# offset: 44
 	
 	.text
 main:	lui	s0,0x10010		# Base Memory Address
