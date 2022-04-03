@@ -16,12 +16,9 @@
 # t0: temp display of values from array for me to test loop
 
 	.data
-arr:	.word	-160 -1830 922 -596 1432 -142 537 -94 2018 29	# array
+arr:	.word	-160 -1830 922 -596 1432 -142 537 -94 2018 29
 large:	.word	0
 small:	.word	0
-
-# testing strings
-#text:	.asciz	"loop works!\n"
 	
 	.text
 main:	lui	s0,0x10010		# Base Memory Address
@@ -34,20 +31,21 @@ main:	lui	s0,0x10010		# Base Memory Address
 iterator:	slli	s4,s3,2		# multiply index by 4 to get offset
 	add	s5,s0,s4		# add offset to address and store as new address
 	lw	t0,0(s5)		# store from memory into t0 for further comparison	
-	# compare
-	bgt	t0,s1,greater	# go to greater branch if array[index] is greater than number stored in large number register
-	blt	t0,s2,lesser	# go to lesser branch if array[index] is less than number stored in small number register
+	bgt	t0,s1,branch_G	# go to greater branch if array[index] is greater than number stored in large number register
+	blt	t0,s2,branch_L	# go to lesser branch if array[index] is less than number stored in small number register
 	
-indexadder:	addi	s3,s3,1		# add 1 to index
+indaddex:	addi	s3,s3,1		# add 1 to index
 	blt	s3,s6,iterator	# go back to beginning of loop if index is less than 10
-	beq	zero,zero,exit	# exit if reaching this instruction
+	sw	s1,40(s0)		# store large number to memory
+	sw	s2,44(s0)		# store small number to memory
 	
-greater:	add	s1,t0,zero		# store array[index] into large number register
-	beq	zero,zero,indexadder	# return to iterator for completion of loop
+	ori	a7,zero,10		# Exit program
+	ecall
+
+# Branches
+branch_G:	add	s1,t0,zero		# store array[index] into large number register
+	beq	zero,zero,indaddex	# return to iterator for completion of loop
 	
-lesser:	add	s2,t0,zero		# store array[index[ into small number register
-	beq	zero,zero,indexadder	# return to iterator for completion of loop
-	
-exit:	ori	a7, zero, 10	# program exit system call
-	ecall			# exit program
+branch_L:	add	s2,t0,zero		# store array[index] into small number register
+	beq	zero,zero,indaddex	# return to iterator for completion of loop
 	
